@@ -1,11 +1,12 @@
-const button = document.querySelector(".add-btn");
-const updateBtns = document.querySelectorAll(".upd");
-const todoContainer = document.querySelector(".todo-container");
+const updateBtns = document.querySelectorAll(".update");
+const container = document.querySelector(".employee-table");
+const updateForm = document.querySelector("#update-form");
 
 const employees = []
 
+
 window.addEventListener("load", e => {
-    fetch("/todo", {
+    fetch("/employee", {
         headers: {
             "Content-Type": "application/json"
         },
@@ -14,7 +15,7 @@ window.addEventListener("load", e => {
         .then(data => data.json())
         .then(res => {
             res.forEach(item => {
-                todoContainer.innerHTML += addTodoElement(item.name, item.email, item.phone);
+                container.innerHTML += addTodoElement(item.name, item.email, item.phone);
             })
         })
         .catch(err => {
@@ -22,51 +23,16 @@ window.addEventListener("load", e => {
         })
 })
 
-button.addEventListener("click", e => {
-    let name = prompt("Name");
-    let email = prompt("Email");
-    let phone = prompt("Phone");
-    console.log({ name, email, phone });
-    fetch("/todo/add", {
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ name, email, phone }),
-        method: "POST"
-    })
-        .then(data => data.json())
-        .then(res => {
-            todoContainer.innerHTML += addTodoElement(name, email, phone);
-        })
-        .catch(err => {
-            console.log(err);
-        })
-})
-
-const updateTodo = e => {
-    let name = prompt("Name");
-    let email = prompt("Email");
-    let phone = prompt("Phone");
-    fetch(`/todo/upd/${e.id}`, {
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ name, email, phone }),
-        method: "PUT"
-    })
-        .then(data => data.json())
-        .then(res => {
-            e.parentNode.parentNode.parentNode.childNodes[1].textContent = name
-            e.parentNode.parentNode.parentNode.childNodes[3].textContent = email
-            e.parentNode.parentNode.parentNode.childNodes[5].textContent = phone
-        })
-        .catch(err => {
-            console.log(err);
-        })
+const updateEmployee = e => {
+    const input = document.createElement("input")
+    input.type = "hidden";
+    input.name = "oldName";
+    input.value = e.parentNode.parentNode.parentNode.childNodes[1].textContent
+    updateForm.append(input)
 }
 
-const deleteTodo = e => {
-    fetch(`/todo/del/${e.id}`, {
+const deleteEmployee = e => {
+    fetch(`/employee/delete/${e.id}`, {
         headers: {
             "Content-Type": "application/json"
         },
@@ -83,14 +49,14 @@ const deleteTodo = e => {
 
 const addTodoElement = (name, email, phone) => {
     return `
-        <tr class="todo-item">
+        <tr class="employee-item">
             <td>${name}</td>
             <td>${email}</td>
             <td>${phone}</td>
             <td>
                 <div class="action">
-                    <button class="action-btn" id=${name} onClick="updateTodo(this)"><img src="edit.png" alt=""></button>
-                    <button class="action-btn" id=${name} onClick="deleteTodo(this)"><img src="delete.png" alt=""></button>
+                    <button class="action-btn" id=${name} data-bs-toggle="modal" data-bs-target="#editModal" onClick="updateEmployee(this)"><img src="pencil-square.svg" alt="edit"></button>
+                    <button class="action-btn" id=${name} onClick="deleteEmployee(this)"><img src="trash.svg" alt="trash icon"></button>
                 </div>
             </td>
         </tr>

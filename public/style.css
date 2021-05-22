@@ -1,12 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Padauk&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-    color: #3d3f56;
+    font-family: 'Padauk', sans-serif;
 }
 
 body {
@@ -39,23 +37,27 @@ body {
     border: none;
 }
 
-.todo-container {
+.employee-table {
     border-collapse: collapse;
     width: 100%;
 }
 
-.todo-container tr td,
-.todo-container tr th {
+.employee-table tr td,
+.employee-table tr th {
     border: 0.5px solid #ccc;
     padding: 5px;
 }
 
-.todo-container th {
+.employee-table th {
     text-align: start;
 }
 
-.todo-container td {
+.employee-table td {
     width: 25%;
+}
+
+.employee-header {
+    background-color: rgb(99, 156, 241);
 }
 
 .action {
@@ -72,4 +74,6 @@ body {
 
 .action-btn img {
     width: 18px;
+    margin: 0px 8px;
+    cursor: pointer;
 }
