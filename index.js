@@ -38,4 +38,4 @@ app.post("/employee/update", (req, res) => {
     res.redirect('/')
 })
 
-app.listen(3000, () => console.log("Server Up and running"));
+app.listen(process.env.PORT || 3000, () => console.log("Server Up and running"));
