@@ -2,6 +2,13 @@
 ## _Laboratory 6_
 `Name: G. Enkh-Amar`
 `ID: 18b1num0399`
+
+`npm install` to install neccesary dependecies of this project
+
+`node index.js` to run the server
+
+Visit http://localhost:3000/ to try this!
+
 # 1. Home Screen 
 ![screen shot of my project](https://raw.githubusercontent.com/EnkhAmar/icsi301-labratory6/main/homescree.png)
 
