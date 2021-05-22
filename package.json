@@ -4,17 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "deploye": "gh-pages -d views"
   },
   "author": "",
   "license": "ISC",
+  "homepage": "https://EnkhAmar.github.io/icsi301-labratory6",
   "dependencies": {
     "body-parser": "^1.19.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "gh-pages": "^3.1.0",
     "nodemon": "^2.0.7"
-  },
-  "devDependencies": {
-    "gh-pages": "^3.1.0"
   }
 }
